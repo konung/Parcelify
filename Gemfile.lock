@@ -155,6 +155,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    scout_apm (2.1.22)
     shopify_api (4.3.4)
       activeresource (>= 3.0.0)
       rack
@@ -206,6 +207,7 @@ DEPENDENCIES
   rails (= 5.0.0.1)
   rails_12factor
   sass-rails (~> 5.0)
+  scout_apm
   shopify_app
   spring
   sqlite3
@@ -217,4 +219,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.13.7
+   1.14.3

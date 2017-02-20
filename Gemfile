@@ -33,6 +33,7 @@ gem 'pg'
 gem 'haltable'
 gem 'shopify_app'
 gem 'activeresource', github: 'rails/activeresource'
+gem 'scout_apm'
 
 group :production do
   gem 'rails_12factor'
