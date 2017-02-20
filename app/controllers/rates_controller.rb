@@ -1,6 +1,6 @@
 class RatesController < ShopifyApp::AuthenticatedController
   def index
-    @rates = shop.rates.includes(:conditions).order(:name)
+    @rates = shop.rates.includes(:conditions, :product_specific_prices).order(:name)
 
     if @rates.empty?
       render('blank')
