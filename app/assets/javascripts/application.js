@@ -68,7 +68,7 @@ $('body').on('change', '[data-condition-field]', function(event) {
   $parent = $target.closest("[data-condition]");
   $values = $parent.find('[data-product-attributes]')
 
-  if (['name', 'sku', 'vendor'].indexOf($target.val()) > 0) {
+  if (['name', 'sku', 'vendor'].indexOf($target.val()) >= 0) {
     $values.show();
   } else {
     $values.hide();
