@@ -2,6 +2,8 @@
 
 > Parcelify let you create simple yet powerful shipping rates based on address fields. Whether you'd like to create a "5$ Bike delivery" shipping rates for your neighbors, a "Free hand delivery" for your coworkers or an expensive 25$ "Plane delivery" for that remote region in your country, we've got your back.
 
+## Table of Content
+
 - [Documentation](#documentation)
 - [Installation](#installation)
 - [Additional information](#additional-information)
@@ -14,20 +16,20 @@ Limits are there to limit your rate to certain conditions. Use them to make sure
 
 ### Filters
 
-Filters allow you to limit your rate to certain conditions only, whether it's based on product's SKU or address' fields. They work by combining a Field, a Verb and a Value. Let's say you'd like to create a rate that applies solely to the city of Ottawa, you could add a filter that goes as follow;
+Filters allow you to limit the availability of your rate based on specific conditions, such as product SKUs or address fields. They work by combining a Field, a Verb and a Value. The **field** represents the product or address field on which you'd like to apply a condition; the **verb** represents the operation with which you'd like to compare both values; the **value** represents what you'd like to test your condition against. Let's say you'd like to create a rate that applies solely to the city of Ottawa, you could add a filter that goes as follow;
 
-- **Field**: City
-- **Verb**: Equal
-- **Value**: Ottawa
+- Field: City
+- Verb: Equal
+- Value: Ottawa
 
 Available verbs are;
 
-- Equal
-- Start with
-- End with
-- Include
-- Exclude
-- Regex
+- [Equal](#equal)
+- [Start with](#start-with)
+- [End with](#end-with)
+- [Include](#include)
+- [Exclude](#exclude)
+- [Regex](#regex)
 
 ##### Equal
 
@@ -41,13 +43,13 @@ This will check if the field starts with a specific value. Let's say you'd like 
 - **Verb**: Start with
 - **Value**: 902
 
-"90210" and "90213" would both be a match valid values. You can also match multiple values, seperated by the "|" symbol. If, for example, you'd like to match not only Beverly Hills, but also the nearby La Brea district, you could go as follow;
+In the above example, "90210" and "90213" would both be considered valid values and they all start with "902". You can also match multiple values, seperated by the "|" symbol. If, for example, you'd like to match not only Beverly Hills, but also the nearby La Brea district, you could go as follow;
 
 - **Field**: Zip code
 - **Verb**: Start with
 - **Value**: 902|900
 
-In addition to previous values, "90099" would now also be a valid value.
+In addition to previous values, "90099" would now also be considered valid.
 
 ##### End with
 
