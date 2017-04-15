@@ -5,6 +5,9 @@
 ## Table of Content
 
 - [Documentation](#documentation)
+    - [Limits](#limits)
+    - [Filters](#filters)
+    - [Additional cost per item](#additional-cost-per-item)
 - [Installation](#installation)
 - [Additional information](#additional-information)
 
@@ -90,6 +93,17 @@ Let's say you'd like to match all Northern Ireland postcodes, you could go as fo
 - **Value**: ^BT\d{1,2}\s
 
 Rate would then be valid for all addresses with a zip code that starts with BT, immediately followed by one or two digits, then again followed by a whitespace. [You can find more information here](http://www.regular-expressions.info/lookaround.html) and you can [test your skills here](http://rubular.com/).
+
+### Additional cost per item
+
+Once you have a rate setup with your conditions, you can always decide to add additional charges for specific items. Say you sell both postcards and tables, your $2.99 standard shipping might not cut it for those big, heavy items. That's where those "extras" come handy. They rely on the same field, verb, value pattern as described for filters, with the additional of a "price to add", which represents the value you'd like to add on the shipping rate if described condition is met. Let's say you'd like to add $50.00 shipping for each of those tables (sku: ABC1) in a cart, you could add an extra;
+
+- **Field**: Product SKU
+- **Verb**: Equal
+- **Value**: ABC1
+- **Price to add**: 5000
+
+That way, in addition to our $2.99 standard shipping, an extra charge of $50.00 would be added for every table present in the cart.
 
 ## Installation
 
