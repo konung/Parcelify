@@ -92,7 +92,7 @@ Rate would then be valid for all addresses with a zip code that starts with BT, 
 
 ## Installation
 
-For regular installation, you can simply head to the [Shopify App Store](https://apps.shopify.com/parcelify) and follow regular procedures. Due to Shopify's restrictions on external shipping carriers, you'll need [a plan that support 3rd party shipping carrier](https://www.shopify.ca/pricing). If you'd like to run your own copy of this app on your own server, you can to, but I do not offer any help or services. It is open source with an MIT license. Feel free to clone and modify to suit your needs. It was made for Heroku but can probably run on any compatible setup. In addition to the default Heroku environement variables, you'll also need to define;
+For regular installation, you can simply head to the [Shopify App Store](https://apps.shopify.com/parcelify) and follow regular procedures. Due to Shopify's restrictions on external shipping carriers, you'll need [a plan that support 3rd party shipping carrier](https://www.shopify.ca/pricing). If you'd like to run your own copy of this app on your own server, you can too, but you're on your own and I do not offer any help or services. It is open source with an MIT license. Feel free to clone and modify to suit your needs. It was made for Heroku but can probably run on any compatible setup. In addition to the default Heroku environement variables, you'll also need to define;
 
 - `APPLICATION_URL`
 - `SHOPIFY_CLIENT_API_KEY`
