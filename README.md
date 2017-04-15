@@ -37,19 +37,11 @@ This one is self explainatory. This evaluates if the field equals the value. As 
 
 ##### Start with
 
-This will check if the field starts with a specific value. Let's say you'd like to offer a rate to the entire Beverly Hills region, you could check if the Zip code starts with "902".
+This will check if the field starts with a specific value. Let's say you'd like to offer a rate to the entire Beverly Hills region, you could check if the Zip code starts with either "902" or "903".
 
 - **Field**: Zip code
 - **Verb**: Start with
-- **Value**: 902
-
-In the above example, "90210" and "90213" would both be considered valid values and they all start with "902". You can also match multiple values, seperated by the "|" symbol. If, for example, you'd like to match not only Beverly Hills, but also the nearby La Brea district, you could go as follow;
-
-- **Field**: Zip code
-- **Verb**: Start with
-- **Value**: 902|900
-
-In addition to previous values, "90099" would now also be considered valid.
+- **Value**: 90(2|3)
 
 ##### End with
 
@@ -68,14 +60,11 @@ Values such as "123 Elgin Street" would then be perfectly valid.
 
 ##### Exclude
 
-Same thing as include but... the opposite. This is mostly useful if you'd like to exclude specific items from getting your rate. You can use the SKU for this, as follow;
+Same thing as include but... the opposite. This is mostly useful if you'd like to exclude specific items from getting your rate. Say you'd like this rate to be valid for all carts except if it contains a product with a SKU of ABC1 or DEF2, you could do;
 
 - **Field**: SKU
 - **Verb**: Exclude
-- **Value**: SKU1|SKU2|SKU3
-
-The rate would then be valid for all addresses, except if one of the item has a SKU containing either "SKU1", "SKU2" or "SKU3". Be careful though, as in this example, "SKU10" would also be excluded, as it includes "SKU1".
-
+- **Value**: (ABC1)|(DEF2)
 
 ##### Regex
 
@@ -87,7 +76,7 @@ A regular expression is a pattern describing a certain amount of text. That make
 - [a-z] : Any single character in the range a-z
 - \d : Any digit in the range of 0-9
 - . : Any single character
-- (a|b) : a or b
+- (a\|b) : a or b
 - a? : Zero or one of a
 - a* : Zero or more of a
 - a+ : One or more of a
@@ -99,13 +88,11 @@ Let's say you'd like to match all Northern Ireland postcodes, you could go as fo
 - **Verb**: Regular expression
 - **Value**: ^BT\d{1,2}
 
-Rate would then be valid for all addresses with a zip code that starts with BT, immediately followed by one or two digits.
-
-[You can find more information here](http://www.regular-expressions.info/lookaround.html).
+Rate would then be valid for all addresses with a zip code that starts with BT, immediately followed by one or two digits. [You can find more information here](http://www.regular-expressions.info/lookaround.html).
 
 ## Installation
 
-This app is open source with an MIT license. Feel free to clone and modify to suit your needs. It was made for Heroku but can probably run on any compatible setup. In addition to the default Heroku environement variables, you'll also need to define;
+For regular installation, you can simply head to the [Shopify App Store](https://apps.shopify.com/) and follow regular procedures. Due to Shopify's restrictions on external shipping carriers, you'll need [a plan that support 3rd party shipping carrier](https://www.shopify.ca/pricing). If you'd like to run your own copy of this app on your own server, you can to, but I do not offer any help or services. It is open source with an MIT license. Feel free to clone and modify to suit your needs. It was made for Heroku but can probably run on any compatible setup. In addition to the default Heroku environement variables, you'll also need to define;
 
 - `APPLICATION_URL`
 - `SHOPIFY_CLIENT_API_KEY`
