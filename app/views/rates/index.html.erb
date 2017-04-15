@@ -180,7 +180,7 @@
           ShopifyApp.Modal.confirm(
             {
               title: "Having problems?",
-              message: "Rates are not showing up? Having problems deleting / reinstalling the app? We can try to sync back Parcelify with Shopify. Just click here, sit back, relax, and wait. You won't loose any progress.",
+              message: "Rates are not showing up? Having problems deleting / reinstalling the app? You can take a look at our documentation, or alternatively we can try to sync back Parcelify with Shopify. Just click here, sit back, relax, and wait. You won't loose any progress.",
               okButton: "Yes, sync with Shopify",
               cancelButton: "Cancel",
               style: "danger"
@@ -190,6 +190,11 @@
               }
             }
           );
+        }
+      },
+      {
+        label: "Help", callback: function() {
+          window.open("https://christianblais.github.io/Parcelify/", '_blank')
         }
       }]
     }
