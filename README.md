@@ -41,7 +41,7 @@ This will check if the field starts with a specific value. Let's say you'd like 
 
 - **Field**: Zip code
 - **Verb**: Start with
-- **Value**: 90(2|3)
+- **Value**: 90(2\|3)
 
 ##### End with
 
@@ -64,7 +64,7 @@ Same thing as include but... the opposite. This is mostly useful if you'd like t
 
 - **Field**: SKU
 - **Verb**: Exclude
-- **Value**: (ABC1)|(DEF2)
+- **Value**: (ABC1)\|(DEF2)
 
 ##### Regex
 
@@ -75,6 +75,7 @@ A regular expression is a pattern describing a certain amount of text. That make
 - [abc]	: A single character of: a, b, or c
 - [a-z] : Any single character in the range a-z
 - \d : Any digit in the range of 0-9
+- \s : Any whitespace characters (space, tab, etc)
 - . : Any single character
 - (a\|b) : a or b
 - a? : Zero or one of a
@@ -86,9 +87,9 @@ Let's say you'd like to match all Northern Ireland postcodes, you could go as fo
 
 - **Field**: Zip code
 - **Verb**: Regular expression
-- **Value**: ^BT\d{1,2}
+- **Value**: ^BT\d{1,2}\s
 
-Rate would then be valid for all addresses with a zip code that starts with BT, immediately followed by one or two digits. [You can find more information here](http://www.regular-expressions.info/lookaround.html).
+Rate would then be valid for all addresses with a zip code that starts with BT, immediately followed by one or two digits, then again followed by a whitespace. [You can find more information here](http://www.regular-expressions.info/lookaround.html) and you can [test your skills here](http://rubular.com/).
 
 ## Installation
 
