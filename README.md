@@ -9,6 +9,7 @@
     - [Filters](#filters)
     - [Additional cost per item](#additional-cost-per-item)
 - [Examples](#examples)
+- [Frequently Asked Questions](#faq)
 - [Installation](#installation)
 - [Additional information](#additional-information)
 
@@ -108,7 +109,7 @@ That way, in addition to our $2.99 standard shipping, an extra charge of $50.00 
 
 ## Examples
 
-### Free shipping on everything in US, except those few big, heavy items, then $10 worldwide shipping.
+#### Free shipping on everything in US, except those few big, heavy items, then $10 worldwide shipping.
 
 Say you want to offer free shipping on everything but on product A, B and C for which you'd like to charge $5, $10 and $15 respectively. And this needs to be restricted to US as shipping oversea costs much more. This requires a specific setup, but it's entirely doable. You'll need;
 
@@ -123,7 +124,7 @@ Say you want to offer free shipping on everything but on product A, B and C for 
 9) Add again those extras if required.
 10) All good, click save. You're done.
 
-### Free shipping in Canada up to 1kg, $10 afterwards. 15$ worldwide up to 1kg, $30 afterwards.
+#### Free shipping in Canada up to 1kg, $10 afterwards. 15$ worldwide up to 1kg, $30 afterwards.
 
 When we add limits to our rates, we end up with a matrix of availability. We'll need as many shipping rates as there are cells in our matrix. In our case, four rates.
 
@@ -139,7 +140,7 @@ When we add limits to our rates, we end up with a matrix of availability. We'll 
 10) All good, click save.
 11) Rince and repeat for worldwide shipping, except that filters must exclude country code CA.
 
-### Free shipping within a fixed distance of my location
+#### Free shipping within a fixed distance of my location
 
 Parcelify **doesn not** support distances. This requires geolocation services which Parcelify cannot afford. The closest thing you can do to this setup is maintain a fixed list of zip codes to which you'd like to offer your special rate. It's not as accurate, but with this free app, it's the best you can do. So let's say I'm in Canada and I want to offer free shipping around my office, in Ottawa.
 
@@ -147,6 +148,36 @@ Parcelify **doesn not** support distances. This requires geolocation services wh
 2) Set the price to 0 cent. Remember; prices are always in cents.
 3) Add a filter for postal code. In my case, I want to support K1N, K1P, and J8Y. Using regexes, we can write (K1(N|P))|(J8Y).
 4) Add a filter for the country code equals CA. Otherwise the rate would be available in all countries sharing a similar postal code pattern, which I obviously don't want.
+
+## FAQ
+
+#### Can I use Parcelify in conjunction with another service provider?
+
+Yes. But bear in mind that one cannot restrict the other from showing up rates. All rates defined within Parcelify will work independently from rates defined elsewhere.
+
+#### Can I use this app if I don't have 3rd Party Shipping Carrier API?
+
+No. And it's not because I don't want you to, this is a restriction imposed by Shopify. I'm sorry, but there's absolutely **nothing** I can do.
+
+#### Can Parcelify blocks certain rates coming in from USPS or Fedex?
+
+No. All rates defined within Parcelify will work independently from rates defined elsewhere, and the opposite is also true. Two shipping apps cannot interfere with one another.
+
+#### Can I use distances to limit rates, such as a radius of 10km around my office?
+
+No. Parcelify doesn't support distances. See examples above for portential workarounds.
+
+#### Can I pay you to add another feature?
+
+No. But the app is open source, so feel free to fork the repository and tweak the code as you see fit.
+
+#### I have a list of zip codes defined somewhere else. Can I import them in Parcelify?
+
+No. Parcelify doesn't support imports/exports. The app was created for simple use cases and any more complex scenarios could probably benefit from a bigger, stronger, but paid app. I do not have any suggestion for you.
+
+#### Can I set a custom message when there's no rate available?
+
+Shipping carriers do not control texts and messages within Shopify. They provide list of rates, that's it. That being said, you have full control over the text displayed in Shopify, and you can use your Theme Translation tool to find the text you'd like to change and tweak it to fit your needs.
 
 ## Installation
 
