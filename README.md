@@ -146,7 +146,7 @@ Parcelify **doesn not** support distances. This requires geolocation services wh
 
 1. Create a free rate. Let's call it "Neighboor delivery".
 2. Set the price to 0 cent. Remember; prices are always in cents.
-3. Add a filter for postal code. In my case, I want to support K1N, K1P, and J8Y. Using regexes, we can write (K1(N|P))|(J8Y).
+3. Add a filter for postal code. In my case, I want to support K1N, K1P, and J8Y. Using regexes, we can write (K1(N\|P))\|(J8Y).
 4. Add a filter for the country code equals CA. Otherwise the rate would be available in all countries sharing a similar postal code pattern, which I obviously don't want.
 
 ## FAQ
