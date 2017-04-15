@@ -2,7 +2,11 @@
 
 > Parcelify let you create simple yet powerful shipping rates based on address fields. Whether you'd like to create a "5$ Bike delivery" shipping rates for your neighbors, a "Free hand delivery" for your coworkers or an expensive 25$ "Plane delivery" for that remote region in your country, we've got your back.
 
-## Documentation
+- [Documentation](#documentation)
+- [Installation](#installation)
+- [Additional information](#additional-information)
+
+## (#Documentation)
 
 ### Limits
 
@@ -97,7 +101,7 @@ Rate would then be valid for all addresses with a zip code that starts with BT, 
 
 [You can find more information here](http://www.regular-expressions.info/lookaround.html).
 
-## Installation
+## (#Installation)
 
 This app is open source with an MIT license. Feel free to clone and modify to suit your needs. It was made for Heroku but can probably run on any compatible setup. In addition to the default Heroku environement variables, you'll also need to define;
 
@@ -105,7 +109,7 @@ This app is open source with an MIT license. Feel free to clone and modify to su
 - `SHOPIFY_CLIENT_API_KEY`
 - `SHOPIFY_CLIENT_API_SECRET`
 
-## Additional information
+## (#Additional-information)
 
 ### Details
 
