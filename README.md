@@ -8,6 +8,7 @@
     - [Limits](#limits)
     - [Filters](#filters)
     - [Additional cost per item](#additional-cost-per-item)
+- [Examples](#examples)
 - [Installation](#installation)
 - [Additional information](#additional-information)
 
@@ -96,7 +97,7 @@ Rate would then be valid for all addresses with a zip code that starts with BT, 
 
 ### Additional cost per item
 
-Once you have a rate setup with your conditions, you can always decide to add additional charges for specific items. Say you sell both postcards and tables, your $2.99 standard shipping might not cut it for those big, heavy items. That's where those "extras" come handy. They rely on the same field, verb, value pattern as described for filters, with the additional of a "price to add", which represents the value you'd like to add on the shipping rate if described condition is met. Let's say you'd like to add $50.00 shipping for each of those tables (sku: ABC1) in a cart, you could add an extra;
+Once you have a rate setup with your conditions, you can always decide to add additional charges for specific items. Say you sell both postcards and tables, your $2.99 standard shipping might not cut it for those big, heavy items. That's where those "extras" come handy. They rely on the same field, verb, and value pattern as described for filters, with the addition of a "price to add", which represents the value you'd like to add on the shipping rate if described condition is met. Let's say you'd like to add $50.00 shipping for each of those tables (sku: ABC1) in a cart, you could add an extra;
 
 - **Field**: Product SKU
 - **Verb**: Equal
@@ -104,6 +105,48 @@ Once you have a rate setup with your conditions, you can always decide to add ad
 - **Price to add**: 5000
 
 That way, in addition to our $2.99 standard shipping, an extra charge of $50.00 would be added for every table present in the cart.
+
+## Examples
+
+### Free shipping on everything in US, except those few big, heavy items, then $10 worldwide shipping.
+
+Say you want to offer free shipping on everything but on product A, B and C for which you'd like to charge $5, $10 and $15 respectively. And this needs to be restricted to US as shipping oversea costs much more. This requires a specific setup, but it's entirely doable. You'll need;
+
+1) Create a first rate that we'll restrict to US. Let's call it "Standard shipping" for now.
+2) We want this rate to be mainly free, so let's set the base price to 0 cent.
+3) Let's restrict the availability of the rate to US only. Add a filter so that country code must equals US.
+4) Now let's add some "extras" for those heavy items. SKU must equal A\|B\|C.
+5) That's it, we now have our US rate ready. Click save.
+6) Let's create another rate for worldwide shipping. Let's call it "International shipping" for now.
+7) Set the price 1000. Don't forget, prices are all in cents.
+8) Now we want this rate to be available everywhere but US. Add a filter to that country code excludes US.
+9) Add again those extras if required.
+10) All good, click save. You're done.
+
+### Free shipping in Canada up to 1kg, $10 afterwards. 15$ worldwide up to 1kg, $30 afterwards.
+
+When we add limits to our rates, we end up with a matrix of availability. We'll need as many shipping rates as there are cells in our matrix. In our case, four rates.
+
+1) Create a first rate for Canada. Let's call it "Free shipping".
+2) Set the base price to 0 cent.
+3) Let's add a filter for country code equals CA.
+4) We also want to restrict this rate to below 1kg, so add a maximum weight of 1000 grams.
+5) That's it! Click save.
+6) Now create another rate, let's call it "Standard shipping".
+7) Set a base price of $10.
+8) Again, let's restrict that rate to Canada by adding a filter for country code equals CA.
+9) We'll need the opposite limit, so add a minimum weight limit of 1000 grams.
+10) All good, click save.
+11) Rince and repeat for worldwide shipping, except that filters must exclude country code CA.
+
+### Free shipping within a fixed distance of my location
+
+Parcelify **doesn not** support distances. This requires geolocation services which Parcelify cannot afford. The closest thing you can do to this setup is maintain a fixed list of zip codes to which you'd like to offer your special rate. It's not as accurate, but with this free app, it's the best you can do. So let's say I'm in Canada and I want to offer free shipping around my office, in Ottawa.
+
+1) Create a free rate. Let's call it "Neighboor delivery".
+2) Set the price to 0 cent. Remember; prices are always in cents.
+3) Add a filter for postal code. In my case, I want to support K1N, K1P, and J8Y. Using regexes, we can write (K1(N|P))|(J8Y).
+4) Add a filter for the country code equals CA. Otherwise the rate would be available in all countries sharing a similar postal code pattern, which I obviously don't want.
 
 ## Installation
 
