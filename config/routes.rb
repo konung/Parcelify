@@ -7,5 +7,9 @@ Rails.application.routes.draw do
 
   get 'retry', to: 'home#retry'
 
+  namespace :admin do
+    resources :shops, only: [:show]
+  end
+
   root to: 'home#index'
 end
