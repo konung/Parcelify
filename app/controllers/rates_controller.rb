@@ -55,6 +55,8 @@ class RatesController < ShopifyApp::AuthenticatedController
       :price,
       :price_weight_modifier,
       :price_weight_modifier_starter,
+      :price_total_modifier,
+      :price_total_modifier_starter,
       :description,
       :min_price,
       :max_price,
