@@ -48,7 +48,8 @@
                     <%=
                       number_to_percentage(
                         rate.price_total_modifier * 100,
-                        precision: 2
+                        precision: 2,
+                        strip_insignificant_zeros: true
                       )
                     %>
                     <%= " of cart total price" %>
