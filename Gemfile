@@ -31,7 +31,7 @@ gem 'turbolinks'
 
 gem 'pg'
 gem 'haltable'
-gem 'shopify_app'
+gem 'shopify_app', '~> 7'
 gem 'activeresource', github: 'rails/activeresource'
 
 group :production do
