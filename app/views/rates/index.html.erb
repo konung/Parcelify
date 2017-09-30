@@ -153,7 +153,11 @@
                       <%= t(product_specific_price.field, scope: 'matcher.fields').downcase %>
                       <%= "that" %>
                       <%= t(product_specific_price.verb, scope: 'matcher.actions').downcase %>
-                      <%= truncate(product_specific_price.value) %></td>
+                      <%= truncate(product_specific_price.value) %>
+
+                      <% unless product_specific_price.after_n_items.zero? %>
+                        <%= " (after the #{product_specific_price.after_n_items.ordinalize} item)" %>
+                      <% end %>
                     </li>
                   <% end %>
                 </ul>

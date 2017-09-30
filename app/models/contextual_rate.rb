@@ -35,7 +35,7 @@ class ContextualRate
     rate.product_specific_prices.each do |product_specific_price|
       items.each do |item|
         if product_specific_price.valid_for?(item)
-          total_price += product_specific_price.price * item['quantity']
+          total_price += product_specific_price.price * [item['quantity'] - product_specific_price.after_n_items, 0].max
         end
       end
     end

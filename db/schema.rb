@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614015549) do
+ActiveRecord::Schema.define(version: 20170930071718) do
 
   create_table "conditions", force: :cascade do |t|
     t.integer "rate_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170614015549) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "after_n_items", default: 0, null: false
     t.index ["rate_id"], name: "index_product_specific_prices_on_rate_id"
   end
 
