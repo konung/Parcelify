@@ -18,7 +18,18 @@
             <div class="cell-column">
               <h1 style="font-size: 1.5em; color: #31373d">
                 <%= rate.name %>
-                <span class="tag lightgray">
+              </h1>
+
+              <ul class="segmented right">
+                <li><%= link_to 'Edit', rate_path(rate), class: %w(btn default btn-slim) %></li>
+                <li><%= link_to 'Delete', rate_path(rate), method: :delete, class: %w(btn destroy btn-slim), data: { confirm: "Delete \"#{rate.name}\"?" } %></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cell-container">
+            <div class="cell-column">
+              <div class="box price">
                   <%=
                     number_to_currency(
                       rate.price / 100.0,
@@ -48,7 +59,6 @@
                     <%=
                       number_to_percentage(
                         rate.price_total_modifier * 100,
-                        precision: 2,
                         strip_insignificant_zeros: true
                       )
                     %>
@@ -64,13 +74,7 @@
                       %>
                     <% end %>
                   <% end %>
-                </span>
-              </h1>
-
-              <ul class="segmented right">
-                <li><%= link_to 'Edit', rate_path(rate), class: %w(btn default btn-slim) %></li>
-                <li><%= link_to 'Delete', rate_path(rate), method: :delete, class: %w(btn destroy btn-slim), data: { confirm: "Delete \"#{rate.name}\"?" } %></li>
-              </ul>
+                </div>
             </div>
           </div>
 
