@@ -1,3 +1,10 @@
+<% if @rate.disabled? %>
+  <div class="box warning">
+    <i class="ico-warning"></i>
+    This rate is currently disabled
+  </div>
+<% end %>
+
 <%= form_for(@rate) do |f| %>
   <div class="section">
     <div class="section-summary">
@@ -28,6 +35,14 @@
           <%= f.text_field :code, placeholder: 'bike-delivery' %>
           <%= f.label :notes %>
           <%= f.text_area :notes, placeholder: 'Internal notes or description about this rate and what it is for.' %>
+
+          <div class="input-wrapper inline" style="padding: 0;">
+            <div class="checkbox-wrapper">
+              <%= f.check_box :disabled, class: 'checkbox' %>
+              <span class="checkbox-styled"></span>
+            </div>
+            <%= f.label :disabled, 'Disabled (Disable a rate without deleting it)', style: "margin-top: -2px;" %>
+          </div>
         </div>
       </div>
     </div>

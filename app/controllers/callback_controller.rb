@@ -6,7 +6,7 @@ class CallbackController < ApplicationController
     addrs = value.fetch('destination', {})
     items = value.fetch('items', [])
 
-    rates = shop.rates.includes(:conditions, :product_specific_prices).map do |rate|
+    rates = shop.rates.enabled.includes(:conditions, :product_specific_prices).map do |rate|
       ContextualRate.new(rate, items, addrs)
     end.select do |rate_instance|
       rate_instance.valid?

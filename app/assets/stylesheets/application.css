@@ -23,13 +23,24 @@
   position: relative;
 }
 
-.box.price {
-  background-color: #fafcfc;
+.box.full {
   font-weight: bold;
   padding: 15px;
   text-align: center;
-  border: 1px solid #d6e0e8;
+  border-style: solid;
+  border-width: 1px;
   border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+.box.disabled {
+  background-color: #fcf5d9;
+  border-color: #9b731d;
+  color: #9b731d;
+}
+
+.box.price {
+  background-color: #fafcfc;
 }
 
 .right {

@@ -29,7 +29,13 @@
 
           <div class="cell-container">
             <div class="cell-column">
-              <div class="box price">
+              <% if rate.disabled? %>
+                <div class="box full disabled">
+                  This rate is currently disabled
+                </div>
+              <% end %>
+
+              <div class="box full price">
                   <%=
                     number_to_currency(
                       rate.price / 100.0,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930071718) do
+ActiveRecord::Schema.define(version: 20171001012444) do
 
   create_table "conditions", force: :cascade do |t|
     t.integer "rate_id"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20170930071718) do
     t.integer "price_weight_modifier_starter", default: 0, null: false
     t.float "price_total_modifier", default: 0.0, null: false
     t.integer "price_total_modifier_starter", default: 0, null: false
+    t.boolean "disabled", default: false, null: false
+    t.index ["shop_id", "disabled"], name: "index_rates_on_shop_id_and_disabled"
     t.index ["shop_id"], name: "index_rates_on_shop_id"
   end
 

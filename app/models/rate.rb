@@ -18,6 +18,10 @@ class Rate < ActiveRecord::Base
   accepts_nested_attributes_for :conditions, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :product_specific_prices, allow_destroy: true, reject_if: :all_blank
 
+  def self.enabled
+    where(disabled: false)
+  end
+
   def limits
     {
       min_price: min_price,
