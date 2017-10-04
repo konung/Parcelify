@@ -127,9 +127,9 @@ Say you want to offer free shipping on everything but on product A, B and C for 
 9. Add again those extras if required.
 10. All good, click save. You're done.
 
-#### I do dropshipping and prices different from Vendor A and Vendor B
+#### I do dropshipping and prices differ from Vendor A and Vendor B
 
-Dropshipping or not, somethings, shipping prices different depending on the vendor, or the SKU. You can achieve this by using additional charges per item, as described in the previous example. So, for the sake of this example, say you want a shipping price of 5$ in addition to the following rules;
+Dropshipping or not, sometimes, shipping prices differ depending on the vendor, or the SKU. You can achieve this by using additional charges per item, as described in the previous example. So, for the sake of this example, say you want a shipping price of 5$ in addition to the following rules;
 
 - Vendor A charges 5$ more per item, after the first item
 - Vendor B charges 8$ more per item
