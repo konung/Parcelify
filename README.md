@@ -36,6 +36,8 @@ Available verbs are;
 - [Exclude](#exclude)
 - [Regex](#regex)
 
+When using product fields, you'll get asked if you want this filter to be a match for all items, or only one item. It's an important disctinction you need to understand, as it might have an impact on what rates your customers see. If you tick "all items must match", then for this filter to be valid, it needs to apply to all items in the cart. If a single item doesn't comply to the defined rule, the entire filter isn't valid. On the other side, if you tick "single item must match", then the filter is valid as soon as one of the item is the cart is valid, even if other items wouldn't normally comply.
+
 ##### Equal
 
 This one is self explainatory. This evaluates if the field equals the value. As demoed in the example above, you need to match the exact value, with accents and everything.
@@ -69,7 +71,7 @@ Same thing as include but... the opposite. This is mostly useful if you'd like t
 
 - **Field**: SKU
 - **Verb**: Exclude
-- **Value**: (ABC1)\|(DEF2)
+- **Value**: ABC1\|DEF2
 
 ##### Regex
 
@@ -98,14 +100,15 @@ Rate would then be valid for all addresses with a zip code that starts with BT, 
 
 ### Additional cost per item
 
-Once you have a rate setup with your conditions, you can always decide to add additional charges for specific items. Say you sell both postcards and tables, your $2.99 standard shipping might not cut it for those big, heavy items. That's where those "extras" come handy. They rely on the same field, verb, and value pattern as described for filters, with the addition of a "price to add", which represents the value you'd like to add on the shipping rate if described condition is met. Let's say you'd like to add $50.00 shipping for each of those tables (sku: ABC1) in a cart, you could add an extra;
+Once you have a rate setup with your conditions, you can always decide to add additional charges for specific items. Say you sell both postcards and tables, your $2.99 standard shipping might not cut it for those big, heavy items. That's where those "extras" come handy. They rely on the same field, verb, and value pattern as described for filters, with the addition of a "price to add", which represents the value you'd like to add on the shipping rate if described condition is met. Let's say you'd like to add $50.00 shipping for each of those tables (sku: ABC1) in a cart, starting after the first one. You could add an extra;
 
 - **Field**: Product SKU
 - **Verb**: Equal
 - **Value**: ABC1
 - **Price to add**: 5000
+- **After N item**: 1
 
-That way, in addition to our $2.99 standard shipping, an extra charge of $50.00 would be added for every table present in the cart.
+That way, in addition to our $2.99 standard shipping, an extra charge of $50.00 would be added for every table present in the cart, except for the very first one.
 
 ## Examples
 
@@ -123,6 +126,20 @@ Say you want to offer free shipping on everything but on product A, B and C for 
 8. Now we want this rate to be available everywhere but US. Add a filter to that country code excludes US.
 9. Add again those extras if required.
 10. All good, click save. You're done.
+
+#### I do dropshipping and prices different from Vendor A and Vendor B
+
+Dropshipping or not, somethings, shipping prices different depending on the vendor, or the SKU. You can achieve this by using additional charges per item, as described in the previous example. So, for the sake of this example, say you want a shipping price of 5$ in addition to the following rules;
+
+- Vendor A charges 5$ more per item, after the first item
+- Vendor B charges 8$ more per item
+- Vendor C charges 8$ more per item
+
+1. Create a single rate. Not one rate per vendors. Just one, single rate.
+2. Set the base price to whatever you want.
+3. Add an "extra" for when vendor name equals A. Set the price at 500, with start after N item at 1.
+4. Add an "extra" for when vendor name equals B|C. Set the price at 800.
+5. Enjoy. Click save. You're done.
 
 #### Free shipping in Canada up to 1kg, $10 afterwards. 15$ worldwide up to 1kg, $30 afterwards.
 
@@ -158,6 +175,10 @@ Yes. But bear in mind that one cannot restrict the other from showing up rates. 
 #### Can I use this app if I don't have 3rd Party Shipping Carrier API?
 
 No. And it's not because I don't want you to, this is a restriction imposed by Shopify. I'm sorry, but there's absolutely **nothing** I can do.
+
+#### When a cart contains both item A and item B, two rates show up, but I want them to be combined!
+
+This is because you used filters, whereas what you really want is to use "Additional charge per item". Filters are for availability, additional charges are for the price. So if you want a different price for item A and item B, you don't need to different rates. Simply create one rate, then add an additional charge for item A, and another one for item B. This way, only one rate will show up, and all charges will be added up.
 
 #### Can Parcelify blocks certain rates coming in from USPS or Fedex?
 
