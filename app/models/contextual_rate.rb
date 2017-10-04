@@ -33,11 +33,8 @@ class ContextualRate
     total_price = rate.price + grams_price + price_price
 
     rate.product_specific_prices.each do |product_specific_price|
-      items.each do |item|
-        if product_specific_price.valid_for?(item)
-          total_price += product_specific_price.price * [item['quantity'] - product_specific_price.after_n_items, 0].max
-        end
-      end
+      valid_quantity = items.select(&product_specific_price.method(:valid_for?)).sum { |item| item['quantity'] }
+      total_price += product_specific_price.price * [valid_quantity - product_specific_price.after_n_items, 0].max
     end
 
     total_price
