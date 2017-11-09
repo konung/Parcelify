@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171001012444) do
+ActiveRecord::Schema.define(version: 20171109203803) do
 
   create_table "conditions", force: :cascade do |t|
     t.integer "rate_id"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20171001012444) do
   create_table "shops", force: :cascade do |t|
     t.string "shopify_domain", null: false
     t.string "shopify_token", null: false
-    t.integer "shipping_carrier_id"
+    t.integer "shipping_carrier_id", limit: 8
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency"
