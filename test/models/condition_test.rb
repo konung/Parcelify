@@ -26,6 +26,14 @@ class ConditionTest < ActiveSupport::TestCase
     assert condition.valid_for?("potato")
     assert condition.valid_for?("potatoz")
     refute condition.valid_for?("zpotato")
+
+    condition = build_condition("zip", "start_with", "902|111|555")
+    assert condition.valid_for?("90200")
+    refute condition.valid_for?("09020")
+    refute condition.valid_for?("00902")
+    refute condition.valid_for?("00000")
+    assert condition.valid_for?("55590")
+    refute condition.valid_for?("95550")
   end
 
   test "end_with" do
