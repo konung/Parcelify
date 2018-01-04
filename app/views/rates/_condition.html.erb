@@ -11,7 +11,7 @@
       <%=
         f.select :field,
           Matcher::FIELDS.map { |field| [t(field, scope: 'matcher.fields'), field] },
-          { prompt: 'Field' },
+          { prompt: Condition.human_attribute_name(:field) },
           { class: 'select', data: { condition_field: true } }
       %>
     </div>
@@ -21,7 +21,7 @@
       <%=
         f.select :verb,
           Matcher::VERBS.map { |verb| [t(verb, scope: 'matcher.verbs'), verb] },
-          { prompt: 'Verb' },
+          { prompt: Condition.human_attribute_name(:verb) },
           { class: 'select' }
       %>
     </div>
@@ -31,10 +31,10 @@
 
     <div data-product-attributes style="display: none;">
       <%= f.radio_button :all_items_must_match, true %>
-      <%= f.label :all_items_must_match_true, "All items in carts must match" %>
+      <%= f.label :all_items_must_match_true, t('.all_items_must_match') %>
 
       <%= f.radio_button :all_items_must_match, false %>
-      <%= f.label :all_items_must_match_false, "At least one item must match" %>
+      <%= f.label :all_items_must_match_false, t('.one_items_must_match') %>
     </div>
   </div>
 </div>

@@ -19,6 +19,13 @@
   border-color: #d83e3e;
 }
 
+.field_help {
+  display: block;
+  margin-top: -5px;
+  margin-bottom: 5px;
+  font-style: italic;
+}
+
 .section-cell {
   position: relative;
 }

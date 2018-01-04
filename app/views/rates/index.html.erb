@@ -1,12 +1,12 @@
 <div class="box notice">
   <i class="ico-notice"></i>
-  Do you like Parcelify? Please help me and other merchants by <a href="https://apps.shopify.com/parcelify" target="_blank">writing a review on the app store</a>. Your reviews help others know what to expect when they’re looking for the service we offer and help me keep this all for free. Thank you!
+  <%= t('.notice_html') %>
 </div>
 
 <div class="section">
   <div class="section-summary">
-    <h1>Shipping Rates</h1>
-    <p>These are the shipping rates you created.</p>
+    <h1><%= t('.title_html') %></h1>
+    <p><%= t('.body_html') %></p>
   </div>
 
   <div class="section-content">
@@ -21,8 +21,8 @@
               </h1>
 
               <ul class="segmented right">
-                <li><%= link_to 'Edit', rate_path(rate), class: %w(btn default btn-slim) %></li>
-                <li><%= link_to 'Delete', rate_path(rate), method: :delete, class: %w(btn destroy btn-slim), data: { confirm: "Delete \"#{rate.name}\"?" } %></li>
+                <li><%= link_to t('buttons.edit'), rate_path(rate), class: %w(btn default btn-slim) %></li>
+                <li><%= link_to t('buttons.delete'), rate_path(rate), method: :delete, class: %w(btn destroy btn-slim), data: { confirm: t('shared.delete', value: rate.name) } %></li>
               </ul>
             </div>
           </div>
@@ -31,71 +31,66 @@
             <div class="cell-column">
               <% if rate.disabled? %>
                 <div class="box full disabled">
-                  This rate is currently disabled
+                  <%= t('rates.disabled') %>
                 </div>
               <% end %>
 
-              <div class="box full price">
-                  <%=
-                    number_to_currency(
-                      rate.price / 100.0,
-                      unit: shop.currency,
-                      format: "%n %u"
-                    )
-                  %>
-
-                  <% unless rate.price_weight_modifier.zero? %>
-                    <%= " + " %>
-                    <%=
-                      number_to_currency(
-                        rate.price_weight_modifier / 100.0,
-                        format: "%n"
-                      )
-                    %>
-                    <%= " per gram" %>
-
-                    <% unless rate.price_weight_modifier_starter.zero? %>
-                      <%= " after " %>
-                      <%= pluralize(rate.price_weight_modifier_starter, "gram") %>
-                    <% end %>
-                  <% end %>
-
-                  <% unless rate.price_total_modifier.zero? %>
-                    <%= " + " %>
-                    <%=
-                      number_to_percentage(
-                        rate.price_total_modifier * 100,
-                        strip_insignificant_zeros: true
-                      )
-                    %>
-                    <%= " of cart total price" %>
-
-                    <% unless rate.price_total_modifier_starter.zero? %>
-                      <%= " after " %>
-                      <%=
-                        number_to_currency(
-                          rate.price_total_modifier_starter / 100.0,
-                          format: "%n"
-                        )
-                      %>
-                    <% end %>
-                  <% end %>
+              <% if rate.notes.present? %>
+                <div class="box full price">
+                  <%= rate.notes %>
                 </div>
+              <% end %>
             </div>
           </div>
 
-          <% if rate.notes.present? %>
-            <div class="cell-container">
-              <div class="cell-column">
-                <h1><%= rate.notes %></h1>
-              </div>
+          <div class="cell-container">
+            <div class="cell-column">
+              <h1><%= t('.price') %></h1>
+              <ul>
+                <li>
+                  <%= Rate.human_attribute_name(:price) %>:
+                  <%= number_to_currency(
+                        rate.price / 100.0,
+                        unit: shop.currency,
+                        format: "%n %u"
+                      ) %>
+                </li>
+
+                <% unless rate.price_weight_modifier.zero? %>
+                  <li>
+                    <%= Rate.human_attribute_name(:price_weight_modifier) %>:
+                    <%= rate.price_weight_modifier / 100.0 %>
+                  </li>
+
+                  <% unless rate.price_weight_modifier_starter.zero? %>
+                    <li>
+                      <%= Rate.human_attribute_name(:price_weight_modifier_starter) %>:
+                      <%= pluralize(rate.price_weight_modifier_starter, t('default.unit.gram')) %>
+                    </li>
+                  <% end %>
+                <% end %>
+
+                <% unless rate.price_total_modifier.zero? %>
+                  <li>
+                    <%= Rate.human_attribute_name(:price_total_modifier) %>:
+                    <%= rate.price_total_modifier / 100.0 %>
+                  </li>
+
+                  <% unless rate.price_total_modifier_starter.zero? %>
+                    <li>
+                      <%= Rate.human_attribute_name(:price_total_modifier_starter) %>:
+                      <%= pluralize(rate.price_total_modifier_starter, t('default.unit.cent')) %>
+                    </li>
+                  <% end %>
+                <% end %>
+              </ul>
             </div>
-          <% end %>
+          </div>
 
           <% if rate.limits.any? %>
             <div class="cell-container">
               <div class="cell-column">
-                <h1>This rate is only valid for orders within those limits:</h1>
+                <h1><%= t('.limits') %></h1>
                 <ul>
                   <% if rate.min_price.present? %>
                     <li>
@@ -126,14 +121,14 @@
                   <% if rate.min_grams.present? %>
                     <li>
                       <%= Rate.human_attribute_name(:min_grams) %>:
-                      <%= number_with_delimiter(rate.min_grams) %> grams
+                      <%= number_with_delimiter(rate.min_grams) %> <%= t('default.unit.gram') %>
                     </li>
                   <% end %>
 
                   <% if rate.max_grams.present? %>
                     <li>
                       <%= Rate.human_attribute_name(:max_grams) %>:
-                      <%= number_with_delimiter(rate.max_grams) %> grams
+                      <%= number_with_delimiter(rate.max_grams) %> <%= t('default.unit.gram') %>
                     </li>
                   <% end %>
                 </ul>
@@ -144,25 +139,23 @@
           <% if rate.product_specific_prices.any? %>
             <div class="cell-container">
               <div class="cell-column">
-                <h1>Additional costs will be applied;</h1>
+                <h1><%= t('.extras') %></h1>
                 <ul>
                   <% rate.product_specific_prices.each do |product_specific_price| %>
                     <li>
-                      <%=
-                        number_to_currency(
-                          product_specific_price.price / 100.0,
-                          unit: shop.currency,
-                          format: "%n %u"
-                        )
-                      %>
-                      <%= "when an item has a" %>
-                      <%= t(product_specific_price.field, scope: 'matcher.fields').downcase %>
-                      <%= "that" %>
-                      <%= t(product_specific_price.verb, scope: 'matcher.actions').downcase %>
-                      <%= truncate(product_specific_price.value) %>
+                      <%= t('.product_specific_price',
+                            price: number_to_currency(
+                              product_specific_price.price / 100.0,
+                              unit: shop.currency,
+                              format: "%n %u"
+                            ),
+                            field: t(product_specific_price.field, scope: 'matcher.fields').downcase.pluralize,
+                            verb: t(product_specific_price.verb, scope: 'matcher.actions').downcase,
+                            value: truncate(product_specific_price.value)
+                          ) %>
 
                       <% unless product_specific_price.after_n_items.zero? %>
-                        <%= " (after the #{product_specific_price.after_n_items.ordinalize} item)" %>
+                        (<%= t('.product_specific_price_n_items', n: product_specific_price.after_n_items) %>)
                       <% end %>
                     </li>
                   <% end %>
@@ -174,23 +167,31 @@
           <% if rate.conditions.any? %>
             <div class="cell-container">
               <div class="cell-column">
-                <h1>This rate is only valid when all the following conditions are met;</h1>
+                <h1><%= t('.filters') %></h1>
                 <ul>
                   <% rate.conditions.each do |condition| %>
                     <li>
                       <% if Matcher::PRODUCT_FIELDS.include?(condition.field) %>
                         <% if condition.all_items_must_match? %>
-                          <%= "all" %>
+                          <%= t('.all_product_filter',
+                                field: t(condition.field, scope: 'matcher.fields').downcase.pluralize,
+                                verb: t(condition.verb, scope: 'matcher.actions').downcase,
+                                value: truncate(condition.value)
+                              ) %>
                         <% else %>
-                          <%= "at least one" %>
+                          <%= t('.one_product_filter',
+                                field: t(condition.field, scope: 'matcher.fields').downcase,
+                                verb: t(condition.verb, scope: 'matcher.actions').downcase,
+                                value: truncate(condition.value)
+                              ) %>
                         <% end %>
-                        <%= t(condition.field, scope: 'matcher.fields').downcase.pluralize %>
                       <% else %>
-                        <%= "the destination" %>
-                        <%= t(condition.field, scope: 'matcher.fields').downcase %>
+                        <%= t('.address_filter',
+                              field: t(condition.field, scope: 'matcher.fields').downcase,
+                              verb: t(condition.verb, scope: 'matcher.actions').downcase,
+                              value: truncate(condition.value)
+                            ) %>
                       <% end %>
-                      <%= t(condition.verb, scope: 'matcher.actions').downcase %>
-                      <%= truncate(condition.value) %>
                     </li>
                   <% end %>
                 </ul>
@@ -206,19 +207,19 @@
 
 <% content_for :shopify_app_javascript do %>
   ShopifyApp.Bar.initialize({
-    title: 'Shipping Rates',
+    title: '<%= t('breadcrumbs.rates') %>',
     buttons: {
-      primary: { label: "New shipping rate", callback: function() {
+      primary: { label: "<%= t('buttons.new_rate') %>", callback: function() {
         window.location = "<%= new_rate_path %>"
       }},
       secondary: [{
-        label: "Troubleshoot", callback: function() {
+        label: "<%= t('buttons.troubleshoot') %>", callback: function() {
           ShopifyApp.Modal.confirm(
             {
-              title: "Having problems?",
-              message: "Rates are not showing up? Having problems deleting / reinstalling the app? You can take a look at our documentation, or alternatively we can try to sync back Parcelify with Shopify. Just click here, sit back, relax, and wait. You won't loose any progress.",
-              okButton: "Yes, sync with Shopify",
-              cancelButton: "Cancel",
+              title: "<%= t('troubleshoot.title_html') %>",
+              message: "<%= t('troubleshoot.body_html') %>",
+              okButton: "<%= t('buttons.sync') %>",
+              cancelButton: "<%= t('buttons.cancel') %>",
               style: "danger"
             }, function(result) {
               if (result) {
@@ -229,7 +230,7 @@
         }
       },
       {
-        label: "Help", callback: function() {
+        label: "<%= t('buttons.help') %>", callback: function() {
           window.open("https://christianblais.github.io/Parcelify/", '_blank')
         }
       }]

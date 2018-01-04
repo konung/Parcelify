@@ -1,35 +1,24 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
+  default:
+    unit:
+      gram: gram
+      cent: cent
   activerecord:
     attributes:
       rate:
         name: "Name"
-        price: "Price"
+        price: "Base price"
         description: "Description"
         min_price: "Minimum price"
         max_price: "Maximum price"
         min_grams: "Minimum weight"
         max_grams: "Maximum weight"
+        price_weight_modifier: "Price per gram"
+        price_weight_modifier_starter: "Starting after X grams"
+        price_total_modifier: "Price per cent"
+        price_total_modifier_starter: "Starting after X cents"
+      product_specific_price:
+        after_n_items: After N items
   matcher:
     fields:
       address1: "Address line 1"
@@ -56,3 +45,105 @@ en:
       equal: "equal to"
       start_with: "start with"
       end_with: "end with"
+  buttons:
+    retry: Retry
+    new_rate: New shipping rate
+    save: Save
+    edit: Edit
+    help: Help
+    delete: Delete
+    cancel: Cancel
+    troubleshoot: Troubleshoot
+    sync: Sync with Shopify
+  breadcrumbs:
+    welcome: Welcome
+    new_rate: New
+    rates: Shipping rates
+  shared:
+    error: Oops, something went wrong!
+    delete: Delete %{value}?
+  troubleshoot:
+    title_html: Having a problem?
+    body_html: Rates are not showing up? Having problems deleting / reinstalling the app? You can take a look at our documentation, or alternatively we can try to sync back Parcelify with Shopify. Just click here, sit back, relax, and wait. You won't loose any progress.
+  home:
+    onboarding:
+      notice: We're currently syncing up with your Shopify shop. Please sit tight, it shouldn't take long (we hope so!).
+    error:
+      notice: There was an error onboarding your shop.
+      explanation:
+        title_html: We're sorry, but...
+        body_html: |
+          In order for Parcelify to work properly, it requires access to Shopify's
+          <a href="https://help.shopify.com/api/reference/carrierservice" target="_blank">
+          CarrierService API</a>. Unfortunately, access to this API is restricted to
+          <a href="https://www.shopify.ca/pricing" target="_blank">advanced plans</a> only.
+          Feel free to contact Shopify's support to inquire about a potential upgrade and
+          to learn more about the added value.
+  rates:
+    disabled: This rate is currently disabled
+    index:
+      title_html: Shipping Rates
+      body_html: These are the shipping rates you created.
+      notice_html: Do you like Parcelify? Please help me and other merchants by <a href="https://apps.shopify.com/parcelify" target="_blank">writing a review on the app store</a>. Your reviews help others know what to expect when they’re looking for the service we offer and help me keep this all for free. Thank you!
+      price: 'Price calculation is done according to;'
+      limits: 'This rate is only valid for orders within those limits:'
+      extras: 'Additional costs will be applied;'
+      filters: 'This rate is only valid when all the following conditions are met;'
+      product_specific_price: '%{price} when %{field} %{verb} %{value}'
+      product_specific_price_n_items: 'after %{n} item(s)'
+      address_filter: "The destination %{field} %{verb} %{value}"
+      all_product_filter: "All %{field} %{verb} %{value}"
+      one_product_filter: "At least one %{field} %{verb} %{value}"
+    condition:
+      all_items_must_match: All items must match the above
+      one_items_must_match: One item must match the above
+    blank:
+      title_html: Welcome to Parcelify!
+      body_html: |
+        Parcelify let you create simple yet powerful shipping rates based on address fields,
+        products, total weight or price. Whether you'd like to create a "5$ Bike delivery"
+        shipping rates for your neighbors, a "Free hand delivery" for your coworkers or an
+        expensive 25$ "Plane delivery" for that remote region in your country, we've got your back.
+        Oh! you want that rate only for orders above $100? You can do that, too!
+        <br><br>
+        You can find all the help required on
+        <a href="https://christianblais.github.io/Parcelify/" target="_blank">
+        our Github page</a>.
+        <br><br>
+        Ready to start? Go ahead, and add a new shipping rate!
+    form:
+      public:
+        title_html: Public Details
+        body_html: Information shown in the cart regarding this shipping rate.
+      advanced:
+        title_html: Advanced Settings
+        body_html: Optional settings for advanced users. Leave blank for default values.
+      price:
+        title_html: Price
+        body_html: |
+          Prices are in sub-units, i.e. cents, pennies, pence, etc.
+          <br><br>
+          Total Price = Base price + (Price per gram * (grams - starting grams) + (Price per cent * (cents - starting cents) + extras per item
+      limits:
+        title_html: Limits
+        body_html: Restrict availability of rates through price and weight.
+      extras:
+        title_html: Additional cost per item
+        body_html: Add per-product price to rates. They're added once per item matching criterias.
+        button: Add an extra
+      filters:
+        title_html: Filters
+        body_html: |
+          Filters decide whether or not a rate is available.
+          Countries and provinces use the <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> standard code.
+          Filters are additive and compounded as ANDs. If you want ORs, use the | character (with no space!) to separate values.
+          <a href="https://christianblais.github.io/Parcelify/" target="_blank">See our help for more details</a>.
+        button: Add a filter
+      fields:
+        help:
+          code: 'Optional, must be unique across all rates'
+          disabled: 'Disable a rate without deleting it'
+          price: 'All prices are in in cents, pennies, pence, etc...'
+          price_weight_modifier_starter: 'Starting after X gram(s)...'
+          price_total_modifier_starter: 'Starting after X cent(s)...'
+

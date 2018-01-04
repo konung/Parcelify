@@ -11,7 +11,7 @@
       <%=
         f.select :field,
           Matcher::PRODUCT_FIELDS.map { |field| [t(field, scope: 'matcher.fields'), field] },
-          { prompt: 'Field' },
+          { prompt: ProductSpecificPrice.human_attribute_name(:field) },
           { class: 'select' }
       %>
     </div>
@@ -21,7 +21,7 @@
       <%=
         f.select :verb,
           Matcher::VERBS.map { |verb| [t(verb, scope: 'matcher.verbs'), verb] },
-          { prompt: 'Verb' },
+          { prompt: ProductSpecificPrice.human_attribute_name(:verb) },
           { class: 'select' }
       %>
     </div>
@@ -29,10 +29,10 @@
     <%= f.label :value %>
     <%= f.text_field :value %>
 
-    <%= f.label :price, 'Price to add' %>
+    <%= f.label :price %>
     <%= f.text_field :price %>
 
-    <%= f.label :after_n_items, 'Start after N item' %>
+    <%= f.label :after_n_items %>
     <%= f.text_field :after_n_items %>
   </div>
 </div>

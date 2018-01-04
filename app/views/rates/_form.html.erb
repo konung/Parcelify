@@ -1,23 +1,23 @@
 <% if @rate.disabled? %>
   <div class="box warning">
     <i class="ico-warning"></i>
-    This rate is currently disabled
+    <%= t('rates.disabled') %>
   </div>
 <% end %>
 
 <%= form_for(@rate) do |f| %>
   <div class="section">
     <div class="section-summary">
-      <h1>Public Details</h1>
-      <p>Information shown in the cart regarding this shipping rate.</p>
+      <h1><%= t('.public.title_html') %></h1>
+      <p><%= t('.public.body_html') %></p>
     </div>
     <div class="section-content">
       <div class="section-row">
         <div class="section-cell">
           <%= f.label :name %>
-          <%= f.text_field :name, placeholder: 'Bike delivery' %>
+          <%= f.text_field :name %>
           <%= f.label :description %>
-          <%= f.text_area :description, placeholder: 'I offer personal bike delivery in my neighborhood.' %>
+          <%= f.text_area :description %>
         </div>
       </div>
     </div>
@@ -25,24 +25,26 @@
 
   <div class="section">
     <div class="section-summary">
-      <h1>Advanced Settings</h1>
-      <p>Optional settings for advanced users. Leave blank for default values.</p>
+      <h1><%= t('.advanced.title_html') %></h1>
+      <p><%= t('.advanced.body_html') %></p>
     </div>
     <div class="section-content">
       <div class="section-row">
         <div class="section-cell">
-          <%= f.label :code, 'Code (optional, must be unique across all rates)' %>
-          <%= f.text_field :code, placeholder: 'bike-delivery' %>
+          <%= f.label :code %>
+          <span class="field_help"><%= t('.fields.help.code') %></span>
+          <%= f.text_field :code %>
           <%= f.label :notes %>
-          <%= f.text_area :notes, placeholder: 'Internal notes or description about this rate and what it is for.' %>
+          <%= f.text_area :notes %>
 
           <div class="input-wrapper inline" style="padding: 0;">
             <div class="checkbox-wrapper">
               <%= f.check_box :disabled, class: 'checkbox' %>
               <span class="checkbox-styled"></span>
             </div>
-            <%= f.label :disabled, 'Disabled (Disable a rate without deleting it)', style: "margin-top: -2px;" %>
+            <%= f.label :disabled, style: "margin-top: -2px;" %>
           </div>
+          <span class="field_help"><%= t('.fields.help.disabled') %></span>
         </div>
       </div>
     </div>
@@ -50,34 +52,34 @@
 
   <div class="section">
     <div class="section-summary">
-      <h1>Price (<%= shop.currency %>)</h1>
-      <p>Prices are in sub-units, i.e. cents, pennies, pence, etc.</p>
-      <p>Total Price = Base price + (Price per gram * (grams - starting grams) + (Price per cent * (cents - starting cents) + extras per item</p>
+      <h1><%= t('.price.title_html') %></h1>
+      <p><%= t('.price.body_html') %></p>
     </div>
     <div class="section-content">
       <div class="section-row">
         <div class="section-cell">
-          <%= f.label :price, 'Base Price (in cents, pennies, pence, etc.)' %>
+          <%= f.label :price %>
+          <span class="field_help"><%= t('.fields.help.price') %></span>
           <%= f.text_field :price, placeholder: 0 %>
         </div>
       </div>
       <div class="section-row">
         <div class="section-cell">
-          <%= f.label :price_weight_modifier, 'Price per gram' %>
+          <%= f.label :price_weight_modifier %>
           <%= f.text_field :price_weight_modifier, placeholder: 0 %>
         </div>
         <div class="section-cell">
-          <%= f.label :price_weight_modifier, 'Starting after X gram(s)...' %>
+          <%= f.label :price_weight_modifier_starter %>
           <%= f.text_field :price_weight_modifier_starter, placeholder: 0 %>
         </div>
       </div>
       <div class="section-row">
         <div class="section-cell">
-          <%= f.label :price_total_modifier, 'Price per cent' %>
+          <%= f.label :price_total_modifier %>
           <%= f.text_field :price_total_modifier, placeholder: 0 %>
         </div>
         <div class="section-cell">
-          <%= f.label :price_total_modifier, 'Starting after X cent(s)...' %>
+          <%= f.label :price_total_modifier_starter %>
           <%= f.text_field :price_total_modifier_starter, placeholder: 0 %>
         </div>
       </div>
@@ -86,8 +88,8 @@
 
   <div class="section">
     <div class="section-summary">
-      <h1>Limits</h1>
-      <p>Restrict availability of rates through price and weight.</p>
+      <h1><%= t('.limits.title_html') %></h1>
+      <p><%= t('.limits.body_html') %></p>
     </div>
     <div class="section-content">
       <div class="section-row">
@@ -115,13 +117,11 @@
 
   <div class="section">
     <div class="section-summary">
-      <h1>Additional cost per item</h1>
-      <p>
-        Add per-product price to rates. They're added once per item matching criterias.
-      </p>
+      <h1><%= t('.extras.title_html') %></h1>
+      <p><%= t('.extras.body_html') %></p>
       <p>
         <button class="btn primary" data-product_specific_price-add>
-          Add an extra
+          <%= t('.extras.button') %>
         </button>
 
         <div style="display: none;" data-product_specific_price-template>
@@ -142,16 +142,11 @@
 
   <div class="section">
     <div class="section-summary">
-      <h1>Filters</h1>
-      <p>
-        Filters decide whether or not a rate is available.
-        Countries and provinces use the <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a> standard code.
-        Filters are additive and compounded as ANDs. If you want ORs, use the | character to separate values.
-        <a href="https://christianblais.github.io/Parcelify/" target="_blank">See our help for more details</a>.
-      </p>
+      <h1><%= t('.filters.title_html') %></h1>
+      <p><%= t('.filters.body_html') %></p>
       <p>
         <button class="btn primary" data-condition-add>
-          Add a filter
+          <%= t('.filters.button') %>
         </button>
 
         <div style="display: none;" data-condition-template>
@@ -173,20 +168,20 @@
 
 <% content_for :shopify_app_javascript do %>
   ShopifyApp.Bar.initialize({
-    title: "<%= @rate.persisted? ? @rate.name : 'New' %>",
-    breadcrumb: { label: "Shipping rates", href: "<%= rates_path %>", target: 'app', loading: false },
+    title: "<%= @rate.persisted? ? @rate.name : t('breadcrumbs.new_rate') %>",
+    breadcrumb: { label: "<%= t('breadcrumbs.rates') %>", href: "<%= rates_path %>", target: 'app', loading: false },
     buttons: {
-      primary: { label: "Save", callback: function() {
+      primary: { label: "<%= t('buttons.save') %>", callback: function() {
         $('form').submit()
       }},
       secondary: [
         {
-          label: "Help", callback: function() {
+          label: "<%= t('buttons.help') %>", callback: function() {
             window.open("https://christianblais.github.io/Parcelify/", '_blank')
           }
         },
         {
-          label: "Cancel", callback: function() {
+          label: "<%= t('buttons.cancel') %>", callback: function() {
             window.location = "<%= rates_path %>"
           }
         }
@@ -195,6 +190,6 @@
   });
 
   <% if @rate.errors.any? %>
-    ShopifyApp.flashError('Oops, something went wrong!');
+    ShopifyApp.flashError('<%= t('shared.error') %>');
   <% end %>
 <% end %>
