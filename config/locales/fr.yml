@@ -1,0 +1,154 @@
+en:
+  default:
+    unit:
+      gram: gramme
+      cent: cent
+  activerecord:
+    attributes:
+      rate:
+        name: Nom
+        price: Prix de base
+        disabled: Désactivé
+        notes: Notes
+        code: Code
+        description: "Description"
+        min_price: "Prix minimum"
+        max_price: "Prix maximum"
+        min_grams: "Poids minimum"
+        max_grams: "Poids maximum"
+        price_weight_modifier: "Prix par gramme"
+        price_weight_modifier_starter: "Débute après X grammes"
+        price_total_modifier: "Prix par cent"
+        price_total_modifier_starter: "Débute après X cents"
+      product_specific_price:
+        after_n_items: Après N item(s)
+        field: Champs
+        verb: Action
+        value: Valeur
+        price: Coût
+      condition:
+        field: Champs
+        verb: Action
+        value: Valeur
+  matcher:
+    fields:
+      address1: "Adresse principale"
+      address2: "Adresse secondaire"
+      city: "Ville"
+      province: "État / Province (Code à deux lettres)"
+      country: "Pays (Code à deux lettres)"
+      postal_code: "Code postal"
+      company_name: "Compagnie"
+      name: "Nom du produit"
+      vendor: "Nom du vendeur"
+      sku: "SKU du produit"
+    verbs:
+      regex: "Expression régulière"
+      include: "Inclu"
+      exclude: "Exclu"
+      equal: "Égual"
+      start_with: "Débute avec"
+      end_with: "Termine avec"
+    actions:
+      regex: "contient"
+      include: "inclut"
+      exclude: "exclut"
+      equal: "est égual à"
+      start_with: "débute avec"
+      end_with: "termine avec"
+  buttons:
+    retry: Réessayer
+    new_rate: Nouvelle option de livraison
+    save: Enregistrer
+    edit: Éditer
+    help: Aide
+    delete: Détruire
+    cancel: Annuler
+    troubleshoot: Réparer
+    sync: Synchroniser
+  breadcrumbs:
+    welcome: Bienvenu
+    new_rate: Nouveau
+    rates: Options de livraison
+  shared:
+    error: Une erreur s'est produite
+    delete: Détruire %{value}?
+  troubleshoot:
+    title_html: Avez-vous un problème?
+    body_html: Les options n'apparaissent pas? Vous ne pouvez pas réinstaller l'application? Nous pouvons tenter de resynchroniser l'application avec Shopify. Vous ne perdrez aucune information.
+  home:
+    onboarding:
+      notice: Nous sommes présentement en train de synchroniser les données avec Shopify. Merci de bien attendre quelques secondes.
+    error:
+      notice: Il y a eu un problème lors de la synchronisation avec Shopify.
+      explanation:
+        title_html: Nous sommes désolé, mais...
+        body_html: |
+          Pour que Parcelify fonctionne correctement, votre plan doit supporter le
+          <a href="https://help.shopify.com/api/reference/carrierservice" target="_blank">
+          CarrierService API</a>. Malheureusement, cet accès est restraint aux
+          <a href="https://www.shopify.ca/pricing" target="_blank">plans avancés</a>
+          seulement. Prière de bien vouloir contacter le support de Shopify pour de plus
+          amples détails.
+  rates:
+    disabled: Cette option est présentement désactivée
+    index:
+      title_html: Options de livraison
+      body_html: Voici les options que vous avez créées.
+      notice_html: Aimez-vous Parcelify? Merci d'aider les autres en <a href="https://apps.shopify.com/parcelify" target="_blank">laissant une évaluation</a>. Merci!
+      price: Le calcul du prix s'effectue selon les conditions suivantes;
+      limits: Cette option n'est valide qu'en fonction des limites suivantes;
+      extras: Des coûts additionnels s'appliquent;
+      filters: Cette option n'est valide que lorsque toutes les conditions suivantes s'appliquent;
+      product_specific_price: '%{price} quand le %{field} %{verb} %{value}'
+      product_specific_price_n_items: 'après %{n} item(s)'
+      address_filter: "La destination %{field} %{verb} %{value}"
+      all_product_filter: "Tous les %{field} %{verb} %{value}"
+      one_product_filter: "Au moins un %{field} %{verb} %{value}"
+    condition:
+      all_items_must_match: Tous les items doivent satisfaire cette condition
+      one_items_must_match: Au moins un item doit satisfaire cette condition
+    blank:
+      title_html: Bienvenue sur Parcelify!
+      body_html: |
+        Parcelify vous aide à créer des options de livraison qui correspondent à vos besoins.
+        Que ce soit en fonction de certains produits spécifiques, d'un champs d'addresses ou
+        pour un groupe de vendeurs, tout y est. Vous pouvez trouver l'aide sur notre
+        <a href="https://christianblais.github.io/Parcelify/" target="_blank">page Github</a>.
+        <br><br>
+        Prêt à débuter? Ajouter une nouvelle option de livraison!
+    form:
+      public:
+        title_html: Information publique
+        body_html: Information publiquement disponible lors du processus de paiement.
+      advanced:
+        title_html: Détails avancés
+        body_html: Détails optionels pour usagers expérimentés.
+      price:
+        title_html: Prix
+        body_html: |
+          Tous les prix sont en sous-unités (cents, pennies, pence, etc).
+          <br><br>
+          Prix total = Prix de base + (Prix par gramme * (grammes - gramme de base) + (Prix par cent * (cents - cents de base) + coûts additionels par item
+      limits:
+        title_html: Limites
+        body_html: Restreint la disponibilité de l'option de livraison via le prix ou le poids.
+      extras:
+        title_html: Coût additionel par item
+        body_html: Ajoute un coût additionel par item. Ils s'ajoutent une fois par item correspondant aux critères.
+        button: Ajouter un extra
+      filters:
+        title_html: Filtres
+        body_html: |
+          Les filtres décident si une option est disponible ou non. Ils sont additifs. Si vous désirer
+          qu'ils soient exclusifs, vous pouvez utiliser le caractère spécial |, qui représente un "ou".
+          <a href="https://christianblais.github.io/Parcelify/" target="_blank">Voyez notre documentation pour de plus amples détails</a>.
+        button: Ajouter un filtre
+      fields:
+        help:
+          code: 'Optionel, doit être unique pour toutes les options'
+          disabled: 'Désactive une option sans la détruire'
+          price: 'Tous les prix sont en sous-unités (cents, pennies, pence, ...)'
+          price_weight_modifier_starter: 'Débute après X gram(s)...'
+          price_total_modifier_starter: 'Débute après X cent(s)...'
+
