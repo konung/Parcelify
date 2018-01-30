@@ -4,7 +4,7 @@ class ProductSpecificPrice < ActiveRecord::Base
   validates :field, inclusion: Matcher::PRODUCT_FIELDS
   validates :verb, inclusion: Matcher::VERBS
   validates :value, presence: true
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 10_000_000 }
+  validates :price, presence: true, numericality: { greater_than: -10_000_000, less_than: 10_000_000 }
   validates :after_n_items, numericality: { greater_than_or_equal_to: 0, less_than: 1_000_000 }
 
   def valid_for?(item)
